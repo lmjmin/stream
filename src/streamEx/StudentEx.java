@@ -21,7 +21,7 @@ public class StudentEx {
 		
 		// 2. 총점 높은 순으로 정렬하여 상위 3명
 		List<Student> top3 = students.stream()
-		        .sorted((s1, s2) -> s2.getTotal() - s1.getTotal()) 
+		        .sorted((s1, s2) -> s2.getTotal() - s1.getTotal()) //큰 값이 앞으로 오게 만들려고 하는 방법
 		        .limit(3)
 		        .toList();
 		System.out.println(top3);
