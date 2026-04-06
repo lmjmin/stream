@@ -2,6 +2,7 @@ package streamEx;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -56,13 +57,29 @@ public class TestEndOper {
 		
 		// 7. anyMatch / allMatch / noneMatch
 		System.out.println("===================| 매칭 연산 |=========================");
-		boolean hasEven = numbers.stream().anyMatch(n -> n % 2 == 0);
-		boolean allPositive = numbers.stream().allMatch(n -> n > 0);
-		boolean noneNagative = numbers.stream().noneMatch(n -> n < 0);
+		boolean hasEven = numbers.stream().anyMatch(n -> n % 2 == 0); //하나라도 조건 만족하면 true
+		boolean allPositive = numbers.stream().allMatch(n -> n > 0); //전부 만족하면 true
+		boolean noneNagative = numbers.stream().noneMatch(n -> n < 0); //하나도 만족 안 하면 true
 		System.out.printf("짝수 있음 : %s , 모두 양수 : %s , 음수 없음 : %s%n",hasEven,allPositive,noneNagative);
-		System.out.println();
 		
+		// 8. max / min : 최소값 / 최대값 찾기
+		System.out.println("===================| max / min |=========================");
+		Optional<Integer> min = numbers.stream().min(Integer::compareTo);
+		Optional<Integer> max = numbers.stream().max(Integer::compareTo);
+		System.out.println("최소 : " + min.orElse(0)); //orElse : 값 없으면 0 반환
+		System.out.println("최대 : " + max.orElse(0));
 		
+		// 9. collect - 그룹 짓기, 기준으로 묶기 (Map으로 반환)
+		System.out.println("===================| collect(그룹핑) |=========================");
+		Map<Integer, List<String>> groupByLength = names.stream() //문자열 길이별로 그룹핑
+														.collect(Collectors.groupingBy(String::length));
+		System.out.println("길이별 그룹 : " + groupByLength);
+		
+		// 10. collect - joining :문자열 합치기
+		System.out.println("===================| joining |=========================");
+		String joined = names.stream() //문자열 하나로 합침
+							 .collect(Collectors.joining(", ","[","]"));	
+		System.out.println(joined);
 	}
 
 }
