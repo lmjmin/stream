@@ -2,6 +2,7 @@ package streamEx;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentEx {
 	public static void main(String[] args) {
@@ -30,10 +31,12 @@ public class StudentEx {
 		
 		// 3. 모든 학생 이름 리스트
 		System.out.println("==========| 모든 학생 이름 리스트 |==============");
-		students.stream()
-		        .map(Student::getName)
-		        .forEach(System.out::println);
-//		System.out.println(names);
+		List<String> names = students.stream()
+//		        .map(Student::getName)
+				.map(s -> s.getName())
+//		        .forEach(System.out::println);
+		        .collect(Collectors.toList());
+		System.out.println("학생 명단 : " + names);
 		
 		
 	}
