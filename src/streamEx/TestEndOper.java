@@ -53,6 +53,15 @@ public class TestEndOper {
 											 .findFirst();
 		
 		firstEven.ifPresent(System.out::println);
+		
+		// 7. anyMatch / allMatch / noneMatch
+		System.out.println("===================| 매칭 연산 |=========================");
+		boolean hasEven = numbers.stream().anyMatch(n -> n % 2 == 0);
+		boolean allPositive = numbers.stream().allMatch(n -> n > 0);
+		boolean noneNagative = numbers.stream().noneMatch(n -> n < 0);
+		System.out.printf("짝수 있음 : %s , 모두 양수 : %s , 음수 없음 : %s%n",hasEven,allPositive,noneNagative);
+		System.out.println();
+		
 	}
 
 }
