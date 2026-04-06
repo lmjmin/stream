@@ -14,23 +14,26 @@ public class StudentEx {
 				);
 		
 		// 1. 평균 80점 이상인 학생
-		List<Student> list = students.stream()
+		System.out.println("==========| 평균 80점 이상인 학생 |==============");
+		students.stream()
 		        .filter(s -> s.getAverage() >= 80)
-		        .toList();
-		System.out.println(list);
+		        .forEach(System.out::println);
+//		System.out.println(list); //이거 할려면 List 만들어서 반환하게 해야함 .toList사용해야해
 		
 		// 2. 총점 높은 순으로 정렬하여 상위 3명
-		List<Student> top3 = students.stream()
+		System.out.println("==========| 총점 높은 순으로 정렬하여 상위 3명 |==============");
+		students.stream()
 		        .sorted((s1, s2) -> s2.getTotal() - s1.getTotal()) //큰 값이 앞으로 오게 만들려고 하는 방법
 		        .limit(3)
-		        .toList();
-		System.out.println(top3);
+		        .forEach(System.out::println);
+//		System.out.println(top3);
 		
 		// 3. 모든 학생 이름 리스트
-		List<String> names = students.stream()
+		System.out.println("==========| 모든 학생 이름 리스트 |==============");
+		students.stream()
 		        .map(Student::getName)
-		        .toList();
-		System.out.println(names);
+		        .forEach(System.out::println);
+//		System.out.println(names);
 		
 		
 	}
